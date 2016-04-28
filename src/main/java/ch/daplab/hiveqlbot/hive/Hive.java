@@ -25,13 +25,18 @@ public class Hive {
     private final Configuration conf;
     private final DataSource dataSource;
 
-    public Hive() throws URISyntaxException, ClassNotFoundException {
+    public Hive() {
         this(new Configuration());
     }
 
-    public Hive(Configuration conf) throws URISyntaxException, ClassNotFoundException {
+    public Hive(Configuration conf) {
         this.conf = conf;
-        this.dataSource = HiveJDBCHelper.getDataSource(this.conf);
+
+        try {
+            this.dataSource = HiveJDBCHelper.getDataSource(this.conf);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void query(String query) {
