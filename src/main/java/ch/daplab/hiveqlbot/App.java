@@ -7,13 +7,17 @@ import static spark.Spark.post;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Created by vgrivel on 4/28/16.
  */
 public class App {
 
-    public static void main(String args[]){
+	private static Logger LOG = LoggerFactory.getLogger(App.class);
+
+	public static void main(String args[]){
 
         Response response = new Response();
         
@@ -23,6 +27,9 @@ public class App {
 		post("/", (req, res) -> {
 			String query = mapper.readTree(req.body()).at("/item/message/message").asText();
 			System.out.println(query);
+			LOG.info("Woot, getting a request, body is {}", req.body());
+			LOG.info("Query is {}", query);
+
 			hive.query(query);
 			res.status(200);
 			return "Query : " + query;

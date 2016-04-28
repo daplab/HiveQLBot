@@ -19,7 +19,7 @@ import java.util.UUID;
  */
 public class Hive {
 
-    private static final String SELECT = "SELECT";
+    private static final String SELECT = "/SQL SELECT";
 
     private static Logger LOG = LoggerFactory.getLogger(Hive.class);
 
@@ -56,6 +56,9 @@ public class Hive {
         if (!query.startsWith(SELECT)) {
             return;
         }
+
+        query = query.substring(5);
+
 
         MessageColor color = MessageColor.GREEN;
         String message = "";
