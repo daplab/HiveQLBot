@@ -43,6 +43,8 @@ public class Hive {
 
     public void query(String query) {
 
+        LOG.info("Woot, getting a query!! {}", query);
+
 //        Query sanitization
 
         if (query == null) {
