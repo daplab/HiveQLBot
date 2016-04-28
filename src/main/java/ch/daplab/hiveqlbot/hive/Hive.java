@@ -1,6 +1,7 @@
 package ch.daplab.hiveqlbot.hive;
 
 import ch.daplab.hiveqlbot.response.Response;
+import io.evanwong.oss.hipchat.v2.rooms.MessageColor;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.slf4j.Logger;
@@ -54,7 +55,7 @@ public class Hive {
             return;
         }
 
-        String color = "GREEN";
+        MessageColor color = MessageColor.GREEN;
         String message = "";
 
         try (Connection connection = dataSource.getConnection(); Statement stmt = connection.createStatement()) {
@@ -76,20 +77,21 @@ public class Hive {
             boolean b = stmt.execute(queryStatement);
 
             if (b) {
-                color = "GREEN";
+                color = MessageColor.GREEN;
                 message = "Query executed successfully, output stored into " + p.toString() + ", query was '" + query + "'";
             } else {
-                color = "YELLOW";
+                color = MessageColor.YELLOW;
                 message = "Ouups, something wrong happened, not sure why (no exception raised...), query was '" + query + "'";
             }
 
         } catch (SQLException e) {
             LOG.warn("Got an SQLException", e);
-            color = "RED";
+            color = MessageColor.RED;
             message = "Query failed with message " + e.getMessage() + ", query was '" + query + "'";
 
         }
 
+        response.hcNotify(message, color);
 
     }
 }
