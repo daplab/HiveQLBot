@@ -20,7 +20,7 @@ public class App {
     	ObjectMapper mapper = new ObjectMapper();
     	Hive hive = new Hive(response);
     	
-		post("/sql", (req, res) -> {
+		post("/", (req, res) -> {
 			String query = mapper.readValue(req.body(), JsonNode.class).path("message").asText();
 			hive.query(query);
 			res.status(200);
