@@ -19,10 +19,10 @@ public class AppTest {
     public void test() throws ExecutionException, InterruptedException {
 
 
-        String defaultAccessToken = "mytoken";
+        String defaultAccessToken = "yfpqpx0UksMn5qndkIHXz4VD9esEHfs8jix9oYY0";
         HipChatClient client = new HipChatClient(defaultAccessToken);
-        SendRoomNotificationRequestBuilder builder = client.prepareSendRoomNotificationRequestBuilder("getRoom", "hello world!");
-        Future<NoContent> future = builder.setColor(MessageColor.RED).setNotify(true).build().execute();
+        SendRoomNotificationRequestBuilder builder = client.prepareSendRoomNotificationRequestBuilder("HackyThursday", "Hi Dorian");
+        Future<NoContent> future = builder.setColor(MessageColor.PURPLE).setNotify(true).build().execute();
 
 //optional... if you want/need to inspect the result:
         NoContent noContent = future.get();
