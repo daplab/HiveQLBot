@@ -6,6 +6,7 @@ import io.evanwong.oss.hipchat.v2.commons.NoContent;
 import io.evanwong.oss.hipchat.v2.rooms.MessageColor;
 import io.evanwong.oss.hipchat.v2.rooms.SendRoomNotificationRequestBuilder;
 
+import java.io.File;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
@@ -16,7 +17,12 @@ public class Response {
 
     private String apitoken;
 
-    public Response(Context context){
+    public Response(){
+
+        ClassLoader classLoader = getClass().getClassLoader();
+        File file = new File(classLoader.getResource("configuration.conf").getFile());
+        Context context = new Context(file.getAbsolutePath());
+        
         this.apitoken = context.getString("apitoken");
     }
 
