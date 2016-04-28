@@ -17,11 +17,9 @@ public class Context {
     private static final Logger LOG = LoggerFactory.getLogger(Context.class);
     Properties prop;
 
-    public Context(String file) {
+    public Context(InputStream is) {
         prop = new Properties();
-        InputStream is = null;
         try {
-            is = new FileInputStream(file);
             prop.load(is);
         } catch (FileNotFoundException e) {
             LOG.error("File not found");

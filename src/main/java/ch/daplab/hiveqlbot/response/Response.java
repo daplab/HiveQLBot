@@ -7,6 +7,7 @@ import io.evanwong.oss.hipchat.v2.rooms.MessageColor;
 import io.evanwong.oss.hipchat.v2.rooms.SendRoomNotificationRequestBuilder;
 
 import java.io.File;
+import java.io.InputStream;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
@@ -20,8 +21,8 @@ public class Response {
     public Response(){
 
         ClassLoader classLoader = getClass().getClassLoader();
-        File file = new File(classLoader.getResource("configuration.conf").getFile());
-        Context context = new Context(file.getAbsolutePath());
+        InputStream is = classLoader.getResourceAsStream("configuration.conf");
+        Context context = new Context(is);
         
         this.apitoken = context.getString("apitoken");
     }
