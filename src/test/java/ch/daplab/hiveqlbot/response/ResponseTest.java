@@ -21,6 +21,6 @@ public class ResponseTest {
         File file = new File(classLoader.getResource("configuration.conf").getFile());
         Context context = new Context(file.getAbsolutePath());
         Response resp =new Response(context);
-        resp.hcNotify("Test message", MessageColor.RANDOM);
+        resp.hcNotify("I just build correctly the project and pass the tests. YEAAAAH", MessageColor.RANDOM);
     }
 }
