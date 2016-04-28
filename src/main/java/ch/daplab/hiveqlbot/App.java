@@ -26,7 +26,7 @@ public class App {
     	
 		post("/", (req, res) -> {
 			String query = mapper.readTree(req.body()).at("/item/message/message").asText();
-			System.out.println(query);
+
 			LOG.info("Woot, getting a request, body is {}", req.body());
 			LOG.info("Query is {}", query);
 

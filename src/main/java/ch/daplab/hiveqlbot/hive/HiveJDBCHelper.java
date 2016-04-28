@@ -28,6 +28,7 @@ public class HiveJDBCHelper {
         BoneCPDataSource ds = new BoneCPDataSource();
         ds.setConnectionTestStatement("SELECT 1");
         ds.setJdbcUrl(jdbcUri);
+        ds.setDefaultAutoCommit(false);
         ds.setUsername("hdfs");
         ds.setPassword("");
         ds.setPartitionCount(1);
