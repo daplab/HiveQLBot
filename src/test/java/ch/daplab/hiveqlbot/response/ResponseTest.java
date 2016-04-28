@@ -1,6 +1,8 @@
 package ch.daplab.hiveqlbot.response;
 
 import ch.daplab.hiveqlbot.utils.Context;
+import io.evanwong.oss.hipchat.v2.rooms.MessageColor;
+
 import org.junit.Test;
 
 import java.io.File;
@@ -19,6 +21,6 @@ public class ResponseTest {
         File file = new File(classLoader.getResource("configuration.conf").getFile());
         Context context = new Context(file.getAbsolutePath());
         Response resp =new Response(context);
-        resp.hcNotify("Test message");
+        resp.hcNotify("Test message", MessageColor.RANDOM);
     }
 }
