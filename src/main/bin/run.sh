@@ -57,7 +57,7 @@ export HADOOP_CLASSPATH="$OUR_CLASSPATH:/etc/hive/conf"
 #export HADOOP_OPTS="${JAVA_OPTS} ${HADOOP_OPTS}"
 #export YARN_OPTS="${JAVA_OPTS} ${HADOOP_OPTS}"
 
-command="java -cp $HADOOP_CLASSPATH jar ch.daplab.hiveqlbot.App"
+command="java -cp $HADOOP_CLASSPATH ch.daplab.hiveqlbot.App"
 
 echo $command $@
 $command $@
