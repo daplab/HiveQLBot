@@ -11,17 +11,40 @@
     <properties>
         <junit.version>4.12</junit.version>
         <slf4j.version>1.7.5</slf4j.version>
+        <apache.hive.version>1.2.1.2.3.4.0-3485</apache.hive.version>
+        <metrics.version>3.1.0</metrics.version>
+        <hipchat-java.version>0.4.1</hipchat-java.version>
+
+        <rpm.license>2016, DAPLAB</rpm.license>
+        <rpm.group>Application/DAPLAB</rpm.group>
+        <rpm.rootprefix>/opt/daplab/hive-ql-bot</rpm.rootprefix>
+        <rpm.apprefix>${rpm.rootprefix}</rpm.apprefix>
+        <rpm.username>daplab_prod</rpm.username>
+        <rpm.groupname>daplab_prod</rpm.groupname>
+        <rpm.logdirname>logs</rpm.logdirname>
+        <rpm.targetos>el6</rpm.targetos>
+        <rpm.targetArch>x86_64</rpm.targetArch>
+        <rpm.path>${rpm.apprefix}</rpm.path>
+        <rpm.logdirpath>${rpm.apprefix}/${rpm.logdirname}</rpm.logdirpath>
+        <rpm.appname>${project.artifactId}</rpm.appname>
+        <rpm.basedir>${project.artifactId}</rpm.basedir>
+        <rpm.distribution>HiveQLBot</rpm.distribution>
     </properties>
+
+    <description>
+        Run Hive queries in HipChat.
+    </description>
+
     <repositories>
         <repository>
-            <id>Maven Central Repo</id>
-            <name>Maven Central Repo</name>
-            <url>https://repo1.maven.org/maven2</url>
+            <id>repo.hortonworks.com</id>
+            <name>Hortonworks HDP Maven Repository</name>
+            <url>http://repo.hortonworks.com/content/repositories/releases/</url>
         </repository>
         <repository>
-            <id>Artifactory Virtual Repo</id>
-            <name>Artifactory Virtual Repo</name>
-            <url>https://artifactory.vrsn.com/artifactory/repo/</url>
+            <id>jetty.repo.hortonworks.com</id>
+            <name>Hortonworks HDP Maven Repository fro Jetty</name>
+            <url>http://repo.hortonworks.com/content/repositories/jetty-hadoop/</url>
         </repository>
     </repositories>
 
@@ -40,7 +63,22 @@
         <dependency>
             <groupId>io.evanwong.oss</groupId>
             <artifactId>hipchat-java</artifactId>
-            <version>0.4.1</version>
+            <version>${hipchat-java.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.hive</groupId>
+            <artifactId>hive-common</artifactId>
+            <version>${apache.hive.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.hive</groupId>
+            <artifactId>hive-jdbc</artifactId>
+            <version>${apache.hive.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.dropwizard.metrics</groupId>
+            <artifactId>metrics-core</artifactId>
+            <version>${metrics.version}</version>
         </dependency>
     </dependencies>
 
