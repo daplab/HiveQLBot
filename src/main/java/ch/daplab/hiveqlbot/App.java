@@ -21,7 +21,8 @@ public class App {
     	Hive hive = new Hive(response);
     	
 		post("/", (req, res) -> {
-			String query = mapper.readValue(req.body(), JsonNode.class).path("message").asText();
+			String query = mapper.readTree(req.body()).at("/item/message/message").asText();
+			System.out.println(query);
 			hive.query(query);
 			res.status(200);
 			return "Query : " + query;
