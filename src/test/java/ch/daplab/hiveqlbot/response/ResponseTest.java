@@ -16,11 +16,7 @@ public class ResponseTest {
     @Test
     public void test() throws ExecutionException, InterruptedException {
 
-
-        ClassLoader classLoader = getClass().getClassLoader();
-        File file = new File(classLoader.getResource("configuration.conf").getFile());
-        Context context = new Context(file.getAbsolutePath());
-        Response resp =new Response(context);
+        Response resp =new Response();
         resp.hcNotify("I just build correctly the project and pass the tests. YEAAAAH", MessageColor.RANDOM);
     }
 }
