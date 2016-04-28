@@ -79,15 +79,12 @@ public class Hive {
             String queryStatement = sb.toString();
 
             LOG.info("Executing {}", queryStatement);
-            boolean b = stmt.execute(queryStatement);
 
-            if (b) {
-                color = MessageColor.GREEN;
-                message = "Query executed successfully, output stored into " + p.toString() + ", query was '" + query + "'";
-            } else {
-                color = MessageColor.YELLOW;
-                message = "Ouups, something wrong happened, not sure why (no exception raised...), query was '" + query + "'";
-            }
+            stmt.execute(queryStatement);
+
+            color = MessageColor.GREEN;
+            message = "Query executed successfully, output stored into " + p.toString() + ", query was '" + query + "'";
+
 
         } catch (SQLException e) {
             LOG.warn("Got an SQLException", e);
