@@ -15,18 +15,6 @@ import java.util.concurrent.Future;
  */
 public class AppTest {
 
-    @Test
-    public void test() throws ExecutionException, InterruptedException {
-
-
-        String defaultAccessToken = "yfpqpx0UksMn5qndkIHXz4VD9esEHfs8jix9oYY0";
-        HipChatClient client = new HipChatClient(defaultAccessToken);
-        SendRoomNotificationRequestBuilder builder = client.prepareSendRoomNotificationRequestBuilder("HackyThursday", "Hi Dorian");
-        Future<NoContent> future = builder.setColor(MessageColor.PURPLE).setNotify(true).build().execute();
-
-//optional... if you want/need to inspect the result:
-        NoContent noContent = future.get();
-    }
 
 
 

@@ -6,6 +6,7 @@ import io.evanwong.oss.hipchat.v2.commons.NoContent;
 import io.evanwong.oss.hipchat.v2.rooms.MessageColor;
 import io.evanwong.oss.hipchat.v2.rooms.SendRoomNotificationRequestBuilder;
 
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 /**
@@ -21,12 +22,20 @@ public class Response {
 
 
 
-    public void hcNotify(String hiveRes, String hdfsPath){
+    public void hcNotify(String resp, MessageColor color){
 
         String defaultAccessToken = apitoken;
         HipChatClient client = new HipChatClient(defaultAccessToken);
-        SendRoomNotificationRequestBuilder builder = client.prepareSendRoomNotificationRequestBuilder("HackyThursday", "The result of the query is store in: " +hdfsPath);
-        Future<NoContent> future = builder.setColor(MessageColor.PURPLE).setNotify(true).build().execute();
+        SendRoomNotificationRequestBuilder builder = client.prepareSendRoomNotificationRequestBuilder("HackyThursday", resp);
+        Future<NoContent> future = builder.setColor(color).setNotify(true).build().execute();
+
+        try {
+            future.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
 
 
     }
