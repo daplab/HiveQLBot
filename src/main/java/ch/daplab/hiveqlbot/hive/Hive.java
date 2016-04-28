@@ -1,5 +1,6 @@
 package ch.daplab.hiveqlbot.hive;
 
+import ch.daplab.hiveqlbot.response.Response;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.slf4j.Logger;
@@ -22,15 +23,15 @@ public class Hive {
     private static Logger LOG = LoggerFactory.getLogger(Hive.class);
 
 
+    private final Response response;
     private final Configuration conf;
     private final DataSource dataSource;
 
-    public Hive() {
-        this(new Configuration());
-    }
 
-    public Hive(Configuration conf) {
-        this.conf = conf;
+    public Hive(Response response) {
+
+        this.response = response;
+        this.conf = new Configuration();
 
         try {
             this.dataSource = HiveJDBCHelper.getDataSource(this.conf);
