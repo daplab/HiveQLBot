@@ -118,4 +118,4 @@ and hence will be allowed to query all the tables this user has access to.
 
 Login into our [HipChat team room](https://daplab.hipchat.com/chat/room/2390200) and try to run a query!
 
-The HiveQLBOt project is hosted with ❤ by the [DAPLAB](http://daplab.ch) team.
+The [HiveQLBot](https://github.com/daplab/HiveQLBot) project is hosted with ❤ by the [DAPLAB](http://daplab.ch) team.
