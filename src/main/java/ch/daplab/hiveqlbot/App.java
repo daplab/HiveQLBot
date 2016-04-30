@@ -23,8 +23,8 @@ public class App {
         
     	ObjectMapper mapper = new ObjectMapper();
     	Hive hive = new Hive(response);
-    	
-		post("/", (req, res) -> {
+
+		post("/query", (req, res) -> {
 			String query = mapper.readTree(req.body()).at("/item/message/message").asText();
 
 			LOG.info("Woot, getting a request, body is {}", req.body());

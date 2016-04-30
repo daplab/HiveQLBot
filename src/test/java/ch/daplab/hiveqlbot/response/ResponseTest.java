@@ -16,7 +16,7 @@ public class ResponseTest {
     @Test
     public void test() throws ExecutionException, InterruptedException {
 
-        Response resp =new Response();
+        Response resp = new Response();
         resp.hcNotify("I just build correctly the project and pass the tests. YEAAAAH", MessageColor.RANDOM);
     }
 }

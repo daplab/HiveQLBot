@@ -46,18 +46,15 @@ MX=2048m
 
 #export HADOOP_USER_CLASSPATH_FIRST=true
 
-JAVA_OPTS="${JAVA_OPTS} -Xms$MS -Xmx$MX -XX:+UseParNewGC -XX:+UseConcMarkSweepGC"
-JAVA_OPTS="${JAVA_OPTS} -XX:-CMSConcurrentMTEnabled -XX:CMSInitiatingOccupancyFraction=70"
-JAVA_OPTS="${JAVA_OPTS} -XX:+CMSParallelRemarkEnabled -XX:+DoEscapeAnalysis"
+#JAVA_OPTS="${JAVA_OPTS} -Xms$MS -Xmx$MX -XX:+UseParNewGC -XX:+UseConcMarkSweepGC"
+#JAVA_OPTS="${JAVA_OPTS} -XX:-CMSConcurrentMTEnabled -XX:CMSInitiatingOccupancyFraction=70"
+#JAVA_OPTS="${JAVA_OPTS} -XX:+CMSParallelRemarkEnabled -XX:+DoEscapeAnalysis"
 
-#HADOOP_OPTS="${HADOOP_OPTS} -Dlog4j.configuration=log4j-production.properties"
-#HADOOP_OPTS="${HADOOP_OPTS} -Dmapreduce.job.user.classpath.first=true"
+#JAVA_OPTS="${JAVA_OPTS} -Dlog4j.configuration=log4j-production.properties"
 
-export HADOOP_CLASSPATH="$OUR_CLASSPATH:/etc/hive/conf"
-#export HADOOP_OPTS="${JAVA_OPTS} ${HADOOP_OPTS}"
-#export YARN_OPTS="${JAVA_OPTS} ${HADOOP_OPTS}"
+export OUR_CLASSPATH="$OUR_CLASSPATH:/etc/hive/conf"
 
-command="java -cp $HADOOP_CLASSPATH ch.daplab.hiveqlbot.App"
+command="java -cp $OUR_CLASSPATH ch.daplab.hiveqlbot.App"
 
 echo $command $@
 $command $@
