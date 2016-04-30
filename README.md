@@ -9,7 +9,7 @@ Hive Queries from HipChat
 To integrate ChatOps with Data, the idea of the project was to allow anyone running
 [Hive](https://hive.apache.org/) queries from our [HipChat team room](https://daplab.hipchat.com/chat/room/2390200)
 
-![Demo time :) ](images/2.png =480px)
+![Demo time :) ](images/2.png)
 
 # HipChat Custom Integration
 
@@ -21,7 +21,7 @@ In the HipChat admin page, creating a slash command integration is really easy, 
 to define the name of the command, `/query` in our case, as well as an endpoint which will
 be requested at every `/query` message
 
-![Integration with hiveqlbot](images/1.png =480px)
+![Integration with hiveqlbot](images/1.png)
 
 ## Message format
 
@@ -86,7 +86,7 @@ _Note: port 4567 is the default port for [SparkJava](http://sparkjava.com/)_
 
 We need to remap the HipChat integration to the temporary enpoint
 
-![ngrock time :) ](images/2.png =480px)
+![ngrock time :) ](images/3.png)
 
 # Try it out!
 
