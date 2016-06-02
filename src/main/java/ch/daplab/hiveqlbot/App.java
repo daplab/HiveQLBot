@@ -5,10 +5,7 @@ import ch.daplab.hiveqlbot.response.Response;
 
 import static spark.Spark.post;
 
-import com.codahale.metrics.CsvReporter;
-import com.codahale.metrics.Meter;
-import com.codahale.metrics.MetricRegistry;
-import com.codahale.metrics.Timer;
+import com.codahale.metrics.*;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
@@ -34,7 +31,7 @@ public class App {
     ObjectMapper mapper = new ObjectMapper();
     Hive hive = new Hive(response);
 
-		startReporter();
+		startConsoleReporter();
 
 		Meter request = registry.meter("hivebot.requestPerSec");
 		final Timer timer = registry.timer("hivebot.latency");
@@ -59,11 +56,19 @@ public class App {
 		});
   }
 
-	private static void startReporter() {
+	private static void startConsoleReporter() {
+		ConsoleReporter reporter = ConsoleReporter.forRegistry(registry)
+						.convertRatesTo(TimeUnit.SECONDS)
+						.convertDurationsTo(TimeUnit.MILLISECONDS)
+						.build();
+		reporter.start(10, TimeUnit.SECONDS);
+	}
+
+	private static void startCsvReporter() {
 		CsvReporter reporter = CsvReporter.forRegistry(registry)
 						.convertRatesTo(TimeUnit.SECONDS)
 						.convertDurationsTo(TimeUnit.MILLISECONDS)
 						.build(new File("/tmp/metrics.csv"));
-		reporter.start(1, TimeUnit.SECONDS);
+		reporter.start(10, TimeUnit.SECONDS);
 	}
 }
